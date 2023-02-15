@@ -1,0 +1,45 @@
+
+.fd-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.fd-col {
+  display: flex;
+  flex-direction: column;
+}
+.banner-text {
+  font-size: large;
+}
+
+.error {
+  color: red;
+}
+body {
+  height: 100vh;
+  background-color: #bfff9380;
+  color: #5d71dcc9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-pic{
+  height: 100px;
+  width: 100px;
+  border-radius: 10px;
+  overflow:hidden;
+  margin: 10px;
+  margin-bottom: 0px;
+  background: transparent;
+}
+img{
+  height: 100px;
+  width: 100px;
+}
+.ID{
+  text-align: center;
+}
+h4{
+  margin: 5px;
+  color: #0000008f;
+}
