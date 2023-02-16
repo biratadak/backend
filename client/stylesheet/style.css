@@ -1,9 +1,9 @@
 body {
   height: 100vh;
-  /* display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; */
+  flex-direction: column;
 }
 
 .form-div {
@@ -50,5 +50,6 @@ input {
   color: #898989;
 }
 .error {
+  /* background-color:#ff540069; */
   color: red;
 }

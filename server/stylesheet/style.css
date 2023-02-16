@@ -1,4 +1,3 @@
-
 .fd-row {
   display: flex;
   flex-direction: row;
@@ -7,6 +6,11 @@
 .fd-col {
   display: flex;
   flex-direction: column;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .banner-text {
   font-size: large;
@@ -22,24 +26,46 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
-.profile-pic{
+.details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-pic {
   height: 100px;
   width: 100px;
   border-radius: 10px;
-  overflow:hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
   margin: 10px;
   margin-bottom: 0px;
   background: transparent;
 }
-img{
+img {
   height: 100px;
   width: 100px;
 }
-.ID{
+.ID {
   text-align: center;
 }
-h4{
+h4 {
   margin: 5px;
   color: #0000008f;
+}
+table {
+  border: 1px solid black;
+  text-align: left;
+  color: aliceblue;
+}
+td {
+  padding: 0px 10px;
+}
+tr:nth-child(odd) {
+  background-color: #066e6e;
+}
+tr:nth-child(even) {
+  background-color: #84dddd;
 }

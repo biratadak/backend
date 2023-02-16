@@ -1,39 +1,37 @@
+<!-- SERVER SIDE CODE -->
 <html>
 
 <head>
-<title>Assgnment 1</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      background-color: #bfff9380;
-      color: #5d71dcc9
-    }
-  </style>
+  <title>Assgnment 1</title>
+  <link rel="stylesheet" href="../stylesheet/style.css">
 </head>
 
 <?php
+include("../class/person.php");
+include("../class/features.php");
 // Defining globals
+$user = new person($_POST['fname'], $_POST['lname']);
+$feature = new features();
 $fNameErr = $lNameErr = "";
-$fName = $lName = "";
 // Check if server request method is POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Checking validation of FirstName
-  if (empty($_POST["fname"])) {
+  if (empty($user->getFName())) {
     echo '<body style="background-color:#ff540069;color:Red">';
     $fNameErr = "<br>First Name required";
   }
   // Check if name only contains letters and whitespace
-  elseif (!preg_match("/^[a-zA-Z-' ]*$/", $_POST["fname"])) {
+  elseif (!$feature->onlyAlpha($user->getFName())) {
     echo '<body style="background-color:#ff540069;color:Red">';
     $fNameErr = "<br>First Name Not contains only alphabets";
   }
   // Checking validation of LastName
-  if (empty($_POST["lname"])) {
+  if (empty($user->getLName())) {
     echo '<body style="background-color:#ff540069;color:Red">';
     $lNameErr = "<br>Last Name required";
   }
   // Check if name only contains letters and whitespace
-  elseif (!preg_match("/^[a-zA-Z-' ]*$/", $_POST["lname"])) {
+  elseif (!$feature->onlyAlpha($user->getLName())) {
     echo '<body style="background-color:#ff540069;color:Red">';
     $lNameErr = "<br>Last Name Not contains only alphabets";
   }
@@ -45,20 +43,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <span>
       <span class="banner-text">
         <?php
+        //If fName and lName fields are filled then show Welcome text
         if ($fNameErr === "" && $lNameErr === "") {
-          echo "Welcome &nbsp" . $_POST["fname"] .
+          echo "Welcome &nbsp" . $user->getFName() .
             "<h5> FORM SUCCESSFULLY SUBMITTED </h4><br>";
-        } else
+        }
+
+        //If fName or lName is not filled then show error
+        else {
           echo "error:";
-        echo $fNameErr;
-        echo $lNameErr;
+          echo $fNameErr;
+          echo $lNameErr;
+        }
         ?>
       </span>
     </span>
 
   </div>
-
-
 
 </body>
 

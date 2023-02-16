@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Assgnment 2</title>
+  <title>Assgnment 3</title>
   <link rel="stylesheet" href="../stylesheet/style.css">
 </head>
 
@@ -13,7 +13,6 @@ include("../class/features.php");
 $user = new person($_POST['fname'], $_POST['lname']);
 $feature = new features();
 $fNameErr = $lNameErr = "";
-$imageerr = "";
 // Check if server request method is POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Check if the FirstName is empty.
@@ -83,7 +82,7 @@ else
       <span class="banner-text">
         <?php
         if ($fNameErr === "" && $lNameErr === "") {
-          echo "Welcome &nbsp" . $_POST["fname"] .
+          echo "Welcome &nbsp" . $user->getFName() .
             "<h5> FORM SUCCESSFULLY SUBMITTED </h4><br>";
         } else {
           echo "error:";
@@ -93,6 +92,49 @@ else
         ?>
       </span>
     </div>
+  </div>
+
+  <!-- Marks Table section -->
+  <?php
+  $user->setMarks($_POST['marks']);
+  ?>
+  <div class="marks-table">
+    <table>
+
+      <?php
+      // Checking If names are Filled
+      if ($fNameErr === "" && $lNameErr === "") {
+        // Checking marks field is not field 
+        if (!empty($user->getMarks())) {
+          echo "<tr>  
+    <td>Subject</td>  
+    <td>Marks</td>  
+    </tr>";
+          //getting all values from textarea line-by-line
+          foreach ($feature->splitMarks($user->getMarks()) as $marks) {
+            echo "<tr>";
+            // Check for Subject validation
+            if ($feature->onlyAlpha($marks[0])) {
+              echo "<td>$marks[0]</td>";
+            } else {
+              echo "<td class='error'>Subject should be Alphabetic </td>";
+            }
+            // Check for marks validation
+            if ($feature->onlyDigit($marks[1])) {
+              echo "<td> $marks[1]</td>";
+            } else {
+              echo "<td class='error'>Marks should be in only Digit </td>";
+            }
+            echo "</tr>";
+          }
+        }
+        //display message if marks field is empty
+        else {
+          echo "<i>-Marksheet not found-</i>";
+        }
+      }
+      ?>
+    </table>
   </div>
 </body>
 
