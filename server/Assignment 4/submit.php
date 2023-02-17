@@ -2,13 +2,14 @@
 <html>
 
 <head>
-  <title>Assgnment 3</title>
+  <title>Assgnment 4</title>
   <link rel="stylesheet" href="../stylesheet/style.css">
 </head>
 
 <?php
 include("../class/person.php");
 include("../class/features.php");
+
 // Defining globals
 $user = new person($_POST['fname'], $_POST['lname']);
 $feature = new features();
@@ -136,6 +137,37 @@ else
       ?>
     </table>
   </div>
+
+  <!-- Phone No validation -->
+  <?php
+  $user->setPhoneNo($_POST['phoneNo']);
+  if ($feature->validPhoneNo($user->getPhoneNo()))
+    echo "<br>Phone Number is: " . $user->getPhoneNo();
+  else
+    echo "<div class='error'><br>Error: Invalid phone number</div>";
+  ?>
+
+  <!-- Email  validation -->
+
+  <!-- Only format check using RegEx -->
+  <?php
+  $user->setMailId($_POST['mailId']);
+  if ($feature->validMailId1($user->getMailId()))
+    echo "<br>Mail Id is: " . $user->getMailId();
+  else
+    echo "<h4 class='error'><br>Invalid E-Mail Id</h4>";
+  ?>
+
+  <!-- Checking format, mx-server, smtp, and deliverablity score for the mail -->
+  <!-- <?php
+  $user->setMailId($_POST['mailId']);
+  if ($feature->validMailId1($user->getMailId()))
+    echo "<br>Mail Id is: " . $user->getMailId();
+  else
+    echo "<h4 class='error'><br>Invalid E-Mail Id</h4>";
+  ?> -->
+
+
 </body>
 
 </html>
