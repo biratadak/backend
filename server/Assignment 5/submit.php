@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Assgnment 4</title>
+  <title>Assgnment 5</title>
   <link rel="stylesheet" href="../stylesheet/style.css">
 </head>
 
@@ -83,7 +83,7 @@ else
       <span class="banner-text">
         <?php
         if ($fNameErr === "" && $lNameErr === "") {
-          echo "Welcome &nbsp" . $user->getFName() .
+          echo "<br>Welcome &nbsp" . $user->getFName() .
             "<h5> FORM SUCCESSFULLY SUBMITTED </h4><br>";
         } else {
           echo "error:";
@@ -147,6 +147,25 @@ else
     echo "<div class='error'><br>Error: Invalid phone number</div>";
   ?>
 
+  <!-- Email  validation -->
+
+  <!-- Only format check using RegEx -->
+  <?php
+  $user->setMailId($_POST['mailId']);
+  if ($feature->validMailId1($user->getMailId()))
+    echo "<br>Mail Id is: " . $user->getMailId();
+  else
+    echo "<div class='error'><br>Invalid E-Mail Id</div>";
+  ?>
+
+  <!-- Checking format, mx-server, smtp, and deliverablity score for the mail -->
+  <!-- <?php
+  $user->setMailId($_POST['mailId']);
+  if ($feature->validMailId1($user->getMailId()))
+    echo "<br>Mail Id is: " . $user->getMailId();
+  else
+    echo "<div class='error'><br>Invalid E-Mail Id</div>";
+  ?> -->
 
 
 </body>

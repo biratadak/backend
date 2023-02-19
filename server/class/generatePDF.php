@@ -37,53 +37,39 @@ function Footer()
     $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
 }
 
-function setDetails($name="N/A",$mailId="N/A",$marks="N/A",$mobileNo="N/A"){
+function setDetails($name="N/A",$mailId="N/A",$marks=array(array("N/A",0)),$mobileNo="N/A"){
 $this->name=$name;
 $this->mailId=$mailId;
 $this->marks=$marks;
 $this->mobileNo=$mobileNo;
 }
 
-// function downloadPDF(){
-//     $this->AliasNbPages();
-//     $this->AddPage();
-//     $this->Ln(10);
-//     // $this->Image('logo.jpeg', 10, 40, 20);
-//     $this->SetFont('Times','',12);
-//     $this->Cell(40,10,'Name:'.$this->name,0,1,'R');
-//     $this->Cell(44,10,'Mail ID: '.$this->mailId,0,1,'R');
-//     $this->Cell(49,10,'Mobile No: '.$this->mobileNo,0,1,'R');
-//     // $this->Cell(0,10,'Marks: '.$this->marks,0,1);
-//     $this->Ln(10);
-//     $this->SetFillColor(194, 330, 230);
-    
-//     $this->Cell(95,10,'Subject'.$this->marks,1,0,'C',TRUE);
-//     $this->Cell(95,10,'Marks'.$this->marks,1,1,'C',TRUE);
-//     // $this->Output('D',"dsa.pdf");
-// }
 }
+// if(isset($_SESSION['name']) && isset($_SESSION['mail'])){
+// $pdf = new PDF();
+//         $pdf->AliasNbPages();
+//         $pdf->AddPage();
+//         $pdf->setDetails($name,$mailId,$marks,$phoneNo);
 
-// Instanciation of inherited class
+//         $pdf->Ln(10);
+//         $pdf->Image("logo.jpeg", 165, 35, 30, 35);
+//         $pdf->SetFont('Times', '', 12);
+//         $pdf->Cell(25, 10, 'Name:' . $pdf->name, 0, 1, '');
+//         $pdf->Cell(29, 10, 'Mail ID: ' . $pdf->mailId, 0, 1, '');
+//         $pdf->Cell(34, 10, 'Mobile No: ' . $pdf->mobileNo, 0, 1, '');
+//         $pdf->Ln(10);
 
-$pdf = new PDF();
-$pdf->AliasNbPages();
-$pdf->AddPage();
-$pdf->Ln(10);
-$pdf->Image('logo.jpeg', 10, 40, 20);
-$pdf->SetFont('Times','',12);
-$pdf->Cell(40,10,'Name:'.$pdf->name,0,1,'R');
-$pdf->Cell(44,10,'Mail ID: '.$pdf->mailId,0,1,'R');
-$pdf->Cell(49,10,'Mobile No: '.$pdf->mobileNo,0,1,'R');
-// $pdf->Cell(0,10,'Marks: '.$pdf->marks,0,1);
-$pdf->Ln(10);
-$pdf->SetFillColor(194, 330, 230);
+//         $pdf->SetFillColor(194, 330, 230);
+//         $pdf->Cell(95, 10, 'Subject', 1, 0, 'C', TRUE);
+//         $pdf->Cell(95, 10, 'Marks', 1, 1, 'C', TRUE);
+//         foreach($marks as $m){
+//             $pdf->Cell(95, 10, $m[0], 1, 0, 'C');
+//             $pdf->Cell(95, 10, $m[1], 1, 1, 'C');
+      
+//         }
+//         $pdf->Output();
+//     }
+//     else 
+//     echo "noo session";
 
-$pdf->Cell(95,10,'Subject'.$pdf->marks,1,0,'C',TRUE);
-$pdf->Cell(95,10,'Marks'.$pdf->marks,1,1,'C',TRUE);
-$pdf->Output();
-
-// To download pdf in server side
-// $pdf->Output('../uploaded_PDFs/Marksheet.pdf','F');
-// To download pdf in client side
-// $pdf->Output('Marksheet.pdf','D');
-?>
+?> 
