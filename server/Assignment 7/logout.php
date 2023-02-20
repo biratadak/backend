@@ -1,12 +1,21 @@
 <?php
 session_start();
-if(isset($_SESSION['userId'])){
-    session_destroy();
-    echo '<script>location.href="login.php"</script>';
-}
-else{
+//  Code to redirect the page to given URL 
 
-    echo '<script>location.href="index.php"</script>';
+function redirect_to($url)
+{
+    header("Location: " . $url);
+    exit;
+}
+
+if (isset($_SESSION['userId'])) {
+    session_destroy();
+    redirect_to("index.php");
+    // echo '<script>location.href="index.php"</script>';
+} else {
+    redirect_to("index.php");
+
+    // echo '<script>location.href="index.php"</script>';
 }
 
 
