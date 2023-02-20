@@ -7,6 +7,8 @@ class features
     // Checks if a string only contains alphabets and whitespaces
 
     //String methods here 
+
+    // Fucntion to check the string only has alphabets
     function onlyAlpha($string)
     {
         if (preg_match("/^[a-zA-Z-' ]*$/", $string)) {
@@ -15,7 +17,7 @@ class features
             return FALSE;
         }
     }
-
+    // Fucntion to check the string only has digits
     function onlyDigit($string)
     {
         if (preg_match("/^[1-9][0-9]{0,15}$/", $string))
@@ -24,7 +26,7 @@ class features
             return FALSE;
     }
 
-    //Image methods here
+    // Image methods here
     function validImage($imageSize, $imageType)
     {
         if (($imageSize / 1000) <= 500 && ($imageType == 'image/jpg' || $imageType == 'image/png' || $imageType == 'image/jpeg')) {
@@ -41,9 +43,9 @@ class features
 
     }
 
-    //Marks methods here
+    // Marks methods here
 
-    //This section splits the $marks string and return array of different strings
+    // This section splits the $marks string and return array of different strings
     function splitMarks($marks)
     {
         $lines = array();
@@ -60,7 +62,7 @@ class features
 
     // Phone No methods here
 
-    //Phone no validation
+    // Phone no validation
     function validPhoneNo($phoneNo)
     {
         if (preg_match("/^[+][9][1][6-9][0-9]{9}$/", $phoneNo))
@@ -71,7 +73,7 @@ class features
 
     // E-Mail methods here
 
-    //MailId validation
+    // MailId validation with Regex
     function validMailId1($mailId)
     {
         if (preg_match("/^[a-z-.]{1,20}[@][a-z]{1,10}[.][c][o][m]$/", $mailId))
@@ -83,7 +85,7 @@ class features
     function validMailBox($mailId)
     {
         $curl = curl_init();
-
+        // Mailbox Layer API calling
         curl_setopt_array(
             $curl,
             array(
@@ -105,7 +107,7 @@ class features
         $response = curl_exec($curl);
 
         curl_close($curl);
-        //checking format, mx, smtp, and deliverablity score for the mail
+        // Checking format, mx, smtp, and deliverablity score for the mail
         if (json_decode($response)->format_valid == TRUE && json_decode($response)->mx_found == TRUE && json_decode($response)->smtp_check == TRUE) {
             echo "<br>(E-mail deliverablity score is: " . ((json_decode($response)->score) * 100) . "% ).";
             return TRUE;
@@ -160,10 +162,10 @@ class features
             $pdf->Cell(95, 10, $m[1], 1, 1, 'C');
       
         }
-        $pdf->Output();
+        // $pdf->Output();
         
         // To download pdf in server side
-        // $pdf->Output('../uploaded_PDFs/Marksheet.pdf','F');
+        $pdf->Output('../uploaded_PDFs/Marksheet.pdf','F');
         // To download pdf in client side
         $pdf->Output('Marksheet.pdf','D');
 
