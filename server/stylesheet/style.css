@@ -46,7 +46,7 @@
 /* submit page */
 body {
   height: 100vh;
-  background: linear-gradient(180deg,rgba(60, 1, 211, 0.5),rgba(137, 1, 183, 0.5)), url("https://source.unsplash.com/random/1400x810/?computer,softwear");
+  background: linear-gradient(180deg,rgba(60, 1, 211, 0.8),rgba(137, 1, 183, 0.8)), url("https://source.unsplash.com/random/1400x810/?computer,softwear");
   background-size: cover;
   background-position: center;
   /* background-color: #bfff9380; */
