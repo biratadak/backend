@@ -1,5 +1,5 @@
+
 <?php
-require('generatePDF.php');
 
 class features
 {
@@ -128,52 +128,6 @@ class features
     }
 
 
-    // PDF section
-    function setPDF($name="N/A", $mailId="N/A" , $marks=array(array("N/A","00")), $phoneNo="N/A" , $imagePath="logo.jpeg"){
-        $this->name=$name;
-        $this->mailId=$mailId;
-        $this->marks=$marks;
-        $this->phoneNo=$phoneNo;
-        $this->imagePath=$imagePath;
-
-
-    }
-    function getPDF()
-    {
-
-        $pdf = new PDF();
-        $pdf->AliasNbPages();
-        $pdf->AddPage();
-        $pdf->setDetails($this->name, $this->mailId, $this->marks, $this->phoneNo);
-
-        $pdf->Ln(10);
-        $pdf->Image($this->imagePath, 165, 35, 30, 35);
-        $pdf->SetFont('Times', '', 12);
-        $pdf->Cell(25, 10, 'Name:' . $pdf->name, 0, 1, '');
-        $pdf->Cell(29, 10, 'Mail ID: ' . $pdf->mailId, 0, 1, '');
-        $pdf->Cell(34, 10, 'Mobile No: ' . $pdf->mobileNo, 0, 1, '');
-        $pdf->Ln(10);
-
-        $pdf->SetFillColor(194, 330, 230);
-        $pdf->Cell(95, 10, 'Subject', 1, 0, 'C', TRUE);
-        $pdf->Cell(95, 10, 'Marks', 1, 1, 'C', TRUE);
-        foreach($this->marks as $m){
-            $pdf->Cell(95, 10, $m[0], 1, 0, 'C');
-            $pdf->Cell(95, 10, $m[1], 1, 1, 'C');
-      
-        }
-        // $pdf->Output();
-        
-        // To download pdf in server side
-        $pdf->Output('../uploaded_PDFs/Marksheet.pdf','F');
-        // To download pdf in client side
-        $pdf->Output('Marksheet.pdf','D');
-
-    }
-
-
-
 }
-
 
 ?>

@@ -8,8 +8,9 @@
 </head>
 
 <?php
-include("../class/person.php");
-include("../class/features.php");
+require("../class/person.php");
+require("../class/features.php");
+require("../vendor/autoload.php");
 
 // Defining globals
 $user = new person($_POST['fname'], $_POST['lname']);
@@ -156,7 +157,7 @@ else
   <!-- Email  validation -->
 
   <!-- Only format check using RegEx -->
-  <?php
+  <?php 
   $user->setMailId($_POST['mailId']);
   if ($feature->validMailId1($user->getMailId()))
     echo "<br>Mail Id is: " . $user->getMailId();
@@ -185,7 +186,8 @@ else
       $_SESSION['phoneNo'] = $user->getPhoneNo();
       $_SESSION['imagePath'] = $file_name;
       $_SESSION['marks'] = $feature->splitMarks($user->getMarks());
-      echo '<a class="pdf-btn" href="http://php.nginx/class/newPage.php">DOWNLOAD PDF</a>';
+      // echo '<a class="pdf-btn" href="http://php.nginx/class/newPage.php">DOWNLOAD PDF</a>';
+      echo '<a class="pdf-btn" href="http://php.nginx/class/generatePDF.php" target="_blank">DOWNLOAD PDF</a>';
 
     }
   }
