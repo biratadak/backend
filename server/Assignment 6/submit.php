@@ -8,8 +8,9 @@
 </head>
 
 <?php
-include("../class/person.php");
-include("../class/features.php");
+require("../class/person.php");
+require("../class/features.php");
+require("../vendor/autoload.php");
 
 // Defining globals
 $user = new person($_POST['fname'], $_POST['lname']);
@@ -79,7 +80,7 @@ else
       ?>
 
     </div>
-    <!-- this field only contains the welcome texts or errors -->
+    <!-- This field only contains the welcome texts or errors -->
     <div class=" fd-col">
       <span class="banner-text">
         <?php
@@ -104,7 +105,7 @@ else
     <table>
 
       <?php
-      //taking a flag value to enable/disable marksheet download button
+      // Taking a flag value to enable/disable marksheet download button
       $marksFlag = 0;
       // Checking If names are Filled
       if ($fNameErr === "" && $lNameErr === "") {
@@ -114,7 +115,7 @@ else
     <td>Subject</td>  
     <td>Marks</td>  
     </tr>";
-          //getting all values from textarea line-by-line
+          // Getting all values from textarea line-by-line
           foreach ($feature->splitMarks($user->getMarks()) as $marks) {
             echo "<tr>";
             // Check for Subject validation
@@ -134,7 +135,7 @@ else
             echo "</tr>";
           }
         }
-        //display message if marks field is empty
+        // Display message if marks field is empty
         else {
           $marksFlag = 1;
           echo "<i>-Marksheet not found-</i>";
@@ -156,7 +157,7 @@ else
   <!-- Email  validation -->
 
   <!-- Only format check using RegEx -->
-  <?php
+  <?php 
   $user->setMailId($_POST['mailId']);
   if ($feature->validMailId1($user->getMailId()))
     echo "<br>Mail Id is: " . $user->getMailId();
@@ -179,16 +180,14 @@ else
 
     if ($marksFlag) {
       echo "<div class='error'><br>Fix Marks syntax to print it</div>";
-    } 
-    else
-    {
-      // echo "inside else";
-      $_SESSION['name']=$user->getFullName();
-      $_SESSION['mailId']=$user->getMailId();
-      $_SESSION['phoneNo']=$user->getPhoneNo();
-      $_SESSION['imagePath']=$file_name;
-      $_SESSION['marks']=$feature->splitMarks($user->getMarks());
-      echo '<a href="http://php.nginx/class/newPage.php">DOWMLOAD</a>';
+    } else {
+      $_SESSION['name'] = $user->getFullName();
+      $_SESSION['mailId'] = $user->getMailId();
+      $_SESSION['phoneNo'] = $user->getPhoneNo();
+      $_SESSION['imagePath'] = $file_name;
+      $_SESSION['marks'] = $feature->splitMarks($user->getMarks());
+      // echo '<a class="pdf-btn" href="http://php.nginx/class/newPage.php">DOWNLOAD PDF</a>';
+      echo '<a class="pdf-btn" href="http://php.nginx/class/generatePDF.php" target="_blank">DOWNLOAD PDF</a>';
 
     }
   }

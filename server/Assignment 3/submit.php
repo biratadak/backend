@@ -77,7 +77,7 @@ else
       ?>
 
     </div>
-    <!-- this field only contains the welcome texts or errors -->
+    <!-- This field only contains the welcome texts or errors -->
     <div class=" fd-col">
       <span class="banner-text">
         <?php
@@ -110,7 +110,7 @@ else
     <td>Subject</td>  
     <td>Marks</td>  
     </tr>";
-          //getting all values from textarea line-by-line
+          // Getting all values from textarea line-by-line
           foreach ($feature->splitMarks($user->getMarks()) as $marks) {
             echo "<tr>";
             // Check for Subject validation
@@ -128,7 +128,7 @@ else
             echo "</tr>";
           }
         }
-        //display message if marks field is empty
+        // Display message if marks field is empty
         else {
           echo "<i>-Marksheet not found-</i>";
         }

@@ -1,32 +1,66 @@
-<?php
-$ID="admin";
-$PASSWORD="password";
-session_start();
+<!DOCTYPE HTML>
+<html>
 
-if(isset($_SESSION['userId'])){
-    echo "<h1>WELCOME ".$_SESSION['userId']."</h1>";
-    echo "<a href='http://php.nginx/Assignment%201/index.html'>A1</a><br>";
-    echo "<a href='http://php.nginx/Assignment%202/index.html'>A2</a><br>";
-    echo "<a href='http://php.nginx/Assignment%203/index.html'>A3</a><br>";
-    echo "<a href='http://php.nginx/Assignment%204/index.html'>A4</a><br>";
-    echo "<a href='http://php.nginx/Assignment%205/index.html'>A5</a><br>";
-    echo "<a href='http://php.nginx/Assignment%206/index.html'>A6</a><br>";
-    echo "<a href='logout.php'><input type=button value='Logout' name='logout'></a>";
-    
+<head>
+  <link rel="stylesheet" href="../stylesheet/style.css">
 
-}
+</head>
+<body>
+  <?php
+  // Define variables and set to empty values
+  $userIdErr = $passErr = "";
+  $userId = $pass = "";
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!empty($_POST["userId"]) && !empty($_POST["pass"]))
 
 
-else{
-if($_POST['userId']==$ID && $_POST['pass']==$PASSWORD)
-    {
-        $_SESSION['userId']=$ID;
-        echo '<script>location.href="index.php"</script>';
+      if (empty($_POST["userId"])) {
+        $userIdErr = "UserId is required";
+      } else {
+        $userId = test_input($_POST["userId"]);
+        // Check if userId only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z-' ]*$/", $userId)) {
+          $userIdErr = "Only letters and white space allowed";
 
+        }
+      }
+
+    if (empty($_POST["pass"])) {
+      $passErr = "Email is required";
+    } else {
+      $pass = test_input($_POST["pass"]);
     }
-else
-    echo "get lost";
 
+  }
 
-}
-?>
+  function test_input($data)
+  {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+  ?>
+
+  <h2>Login Page</h2>
+  <form class="login-form" method="post" action="submit.php">
+    <p><span class="error">* required field</span></p>
+    User Id: <input type="text" name="userId" value="<?php echo $userId; ?>">
+    <span class="error">*
+      <?php echo $userIdErr; ?>
+    </span>
+    <br><br>
+    Password: <input type="text" name="pass" value="<?php echo $pass; ?>">
+    <span class="error">*
+      <?php echo $passErr; ?>
+    </span>
+    <br><br>
+    <div class="center">
+      <input type="submit" name="submit" id="login-btn" value="Login">
+    </div>
+
+  </form>
+
+</body>
+</html>

@@ -150,15 +150,6 @@ else
   <!-- Email  validation -->
 
   <!-- Only format check using RegEx -->
-  <?php
-  $user->setMailId($_POST['mailId']);
-  if ($feature->validMailId1($user->getMailId()))
-    echo "<br>Mail Id is: " . $user->getMailId();
-  else
-    echo "<div class='error'><br>Invalid E-Mail Id</div>";
-  ?>
-
-  <!-- Checking format, mx-server, smtp, and deliverablity score for the mail -->
   <!-- <?php
   $user->setMailId($_POST['mailId']);
   if ($feature->validMailId1($user->getMailId()))
@@ -166,6 +157,15 @@ else
   else
     echo "<div class='error'><br>Invalid E-Mail Id</div>";
   ?> -->
+
+  <!-- Checking format, mx-server, smtp, and deliverablity score for the mail using mailBoxLayer -->
+  <?php
+  $user->setMailId($_POST['mailId']);
+  if ($feature->validMailBox($user->getMailId()))
+    echo "<br>Mail Id is: " . $user->getMailId();
+  else
+    echo "<div class='error'><br>Invalid E-Mail Id</div>";
+  ?>
 
 
 </body>

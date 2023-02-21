@@ -43,13 +43,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <span>
       <span class="banner-text">
         <?php
-        //If fName and lName fields are filled then show Welcome text
+        // If fName and lName fields are filled then show Welcome text
         if ($fNameErr === "" && $lNameErr === "") {
           echo "Welcome &nbsp" . $user->getFName() .
             "<h5> FORM SUCCESSFULLY SUBMITTED </h4><br>";
         }
 
-        //If fName or lName is not filled then show error
+        // If fName or lName is not filled then show error
         else {
           echo "error:";
           echo $fNameErr;
